@@ -16,5 +16,18 @@
   <body>
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
+
+    <!--
+      Static replica of the contact form so Netlify's build-time bot can detect it.
+      The real form lives in src/views/AboutView.vue and posts here via fetch.
+      Never linked/visible — safe to leave in the DOM.
+    -->
+    <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="text" name="subject" />
+      <textarea name="message"></textarea>
+      <input type="text" name="bot-field" />
+    </form>
   </body>
 </html>

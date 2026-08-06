@@ -12,13 +12,37 @@ const form = reactive({
   email: '',
   subject: '',
   message: '',
+  'bot-field': '',
 })
 
 const status = ref('')
+const isSubmitting = ref(false)
 
-function handleSubmit() {
-  // TODO: wire this up to a real form backend (e.g. Formspree, email API) before launch.
-  status.value = 'Thanks — this form is a placeholder for now. Please reach out via email or socials below.'
+function encodeForm(data) {
+  return Object.keys(data)
+    .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
+    .join('&')
+}
+
+async function handleSubmit() {
+  isSubmitting.value = true
+  status.value = ''
+  try {
+    await fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encodeForm({ 'form-name': 'contact', ...form }),
+    })
+    status.value = "Thanks — Jorge's team will get back to you soon."
+    form.name = ''
+    form.email = ''
+    form.subject = ''
+    form.message = ''
+  } catch {
+    status.value = 'Something went wrong sending that — please email booking@jorgedelanuez.com directly.'
+  } finally {
+    isSubmitting.value = false
+  }
 }
 </script>
 
@@ -85,7 +109,18 @@ function handleSubmit() {
         </dl>
       </div>
 
-      <form class="contact-form card" @submit.prevent="handleSubmit">
+      <form
+        class="contact-form card"
+        name="contact"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        @submit.prevent="handleSubmit"
+      >
+        <p class="visually-hidden">
+          <label>
+            Don't fill this out if you're human: <input v-model="form['bot-field']" name="bot-field" />
+          </label>
+        </p>
         <label>
           Name
           <input v-model="form.name" type="text" name="name" required />
@@ -102,7 +137,9 @@ function handleSubmit() {
           Message
           <textarea v-model="form.message" name="message" rows="5" required></textarea>
         </label>
-        <button type="submit" class="btn btn-solid">Send Message</button>
+        <button type="submit" class="btn btn-solid" :disabled="isSubmitting">
+          {{ isSubmitting ? 'Sending…' : 'Send Message' }}
+        </button>
         <p v-if="status" class="contact-form__status">{{ status }}</p>
       </form>
     </div>

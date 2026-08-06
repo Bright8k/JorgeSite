@@ -34,4 +34,14 @@ All copy, stats, and photos are placeholders. Swap in real content in:
 - `ModelingView.vue` — measurements, gallery photos, campaign list
 - `AboutView.vue` — bio copy, achievements, contact details
 
-The contact form in `AboutView.vue` is UI-only — wire it to a real backend (e.g. Formspree, a serverless function) before launch.
+The contact form in `AboutView.vue` submits to **Netlify Forms** (see below) — no backend code required.
+
+## Deploying to Netlify
+
+1. Push this repo to GitHub (or GitLab/Bitbucket).
+2. In Netlify: **Add new site → Import an existing project**, pick the repo.
+3. Build settings are already defined in [netlify.toml](netlify.toml) (`npm run build`, publish `dist`) — Netlify will pick them up automatically.
+4. Deploy. Netlify's build bot detects the hidden static form in `index.html` and wires up form handling automatically — submissions from the real form on the About page will show up under **Site → Forms** in the Netlify dashboard.
+5. Optional: add a **Forms → Notifications** rule in Netlify to email you (or Jorge's booking address) on each new submission, and set a custom domain under **Domain settings**.
+
+If you ever change the contact form's fields, update both the real form in `src/views/AboutView.vue` and its hidden replica in `index.html` — Netlify only detects fields present in the static HTML at build time.

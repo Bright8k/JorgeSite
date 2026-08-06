@@ -2,19 +2,20 @@
 const keyStats = [
   { label: 'Position', value: 'RB' },
   { label: 'Height', value: "5'8\"" },
-  { label: 'Weight', value: '195 lbs' },
-  { label: '40-yd Dash', value: '4.4s' },
+  { label: 'Weight', value: '165 lbs' },
+  { label: '40-yd Dash', value: '4.6s' },
 ]
 
+// TODO: numbers below are placeholders — swap in real season stats once available.
 const seasonStats = [
-  { season: '2025', team: 'Team Name', apps: '12', yards: '840', tds: '9' },
-  { season: '2024', team: 'Team Name', apps: '14', yards: '760', tds: '7' },
+  { season: '2025', team: 'Team Name', apps: '--', yards: '--', tds: '--' },
+  { season: '2024', team: 'Team Name', apps: '--', yards: '--', tds: '--' },
 ]
 
 const history = [
-  { year: '2023 – Present', text: 'Placeholder team / league — starting position, key achievements.' },
-  { year: '2020 – 2023', text: 'Placeholder college / academy program — honors and highlights.' },
-  { year: '2016 – 2020', text: 'Placeholder youth / development program — where it started.' },
+  { year: 'Current', text: 'Trinity College of Florida (TCF Tigers) — running back, USCAA.' },
+  { year: 'College', text: 'University of Central Florida (UCF Knights) — running back, No. 47.' },
+  { year: 'Class of 2023', text: 'Doral Academy (Firebirds), Miami, FL — running back.' },
 ]
 
 const gallery = [
@@ -58,10 +59,17 @@ const gallery = [
         <p class="eyebrow">Highlight Reel</p>
         <h2>Game Film</h2>
         <p>
-          Embed a highlight video here (YouTube / Hudl link) once footage is ready.
-          Placeholder shown until then.
+          Full highlight reel available on QwikCut. Swap in an embedded video here
+          once TCU game footage is ready.
         </p>
-        <a href="#" class="btn btn-solid">Watch Highlights</a>
+        <a
+          href="https://access.qwikcut.com/hub/detail/68fe8e943769e62d09df0b1a/Jorge-De-La-Nuez"
+          target="_blank"
+          rel="noopener"
+          class="btn btn-solid"
+        >
+          Watch Highlights
+        </a>
       </div>
     </div>
   </section>

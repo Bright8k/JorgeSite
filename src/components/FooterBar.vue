@@ -6,8 +6,8 @@ const year = new Date().getFullYear()
   <footer class="footer">
     <div class="container footer__inner">
       <div class="footer__brand">
-        Jorge <span>De La Nuez</span>
-        <p>Football athlete &amp; model.</p>
+        <p class="footer__wordmark">Jorge De La Nuez</p>
+        <p class="footer__tagline">Football athlete &amp; model</p>
       </div>
 
       <nav class="footer__links">
@@ -33,44 +33,40 @@ const year = new Date().getFullYear()
 <style scoped>
 .footer {
   border-top: 1px solid var(--color-border);
-  background: var(--color-bg-alt);
-  padding: 3.5rem 0 1.5rem;
+  padding: 4.5rem 0 2rem;
 }
 
 .footer__inner {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
   gap: 2rem;
-  padding-bottom: 2rem;
+  padding-bottom: 2.5rem;
   border-bottom: 1px solid var(--color-border);
   margin-bottom: 1.5rem;
 }
 
-.footer__brand {
+.footer__wordmark {
   font-family: var(--font-display);
-  font-size: 1.4rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  font-style: italic;
+  font-size: 1.5rem;
+  margin: 0;
 }
 
-.footer__brand span {
-  color: var(--color-accent);
-}
-
-.footer__brand p {
-  font-family: var(--font-body);
-  text-transform: none;
-  letter-spacing: normal;
+.footer__tagline {
+  font-size: 0.85rem;
+  color: var(--color-text-dim);
   margin-top: 0.5rem;
-  font-size: 0.95rem;
 }
 
 .footer__links,
 .footer__social {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  font-size: 0.95rem;
+  gap: 0.9rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   color: var(--color-text-dim);
 }
 
@@ -80,7 +76,7 @@ const year = new Date().getFullYear()
 }
 
 .footer__copy {
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   color: var(--color-text-dim);
   margin: 0;
 }

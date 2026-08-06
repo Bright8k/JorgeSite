@@ -1,6 +1,6 @@
 <script setup>
 const measurements = [
-  { label: 'Height', value: "6'1\"" },
+  { label: 'Height', value: "5'8\"" },
   { label: 'Chest', value: '40"' },
   { label: 'Waist', value: '32"' },
   { label: 'Shoe', value: '11 US' },
@@ -8,7 +8,7 @@ const measurements = [
   { label: 'Eyes', value: 'Brown' },
 ]
 
-const gallery = Array.from({ length: 8 }, (_, i) => ({
+const gallery = Array.from({ length: 9 }, (_, i) => ({
   id: i + 1,
   ratio: i % 3 === 0 ? '3 / 4' : i % 3 === 1 ? '1 / 1' : '4 / 5',
 }))
@@ -33,7 +33,11 @@ const campaigns = [
     </div>
   </section>
 
-  <section class="section section-alt">
+  <section class="media-break bleed">
+    <span>Full-Bleed Editorial Shot</span>
+  </section>
+
+  <section class="section section-invert">
     <div class="container">
       <p class="eyebrow">Comp Card</p>
       <h2>Measurements</h2>
@@ -68,7 +72,7 @@ const campaigns = [
       <p class="eyebrow">Selected Work</p>
       <h2>Campaigns</h2>
       <div class="campaigns">
-        <div v-for="c in campaigns" :key="c.name + c.year" class="campaigns__item card">
+        <div v-for="c in campaigns" :key="c.name + c.year" class="campaigns__item">
           <div class="campaigns__header">
             <h3>{{ c.name }}</h3>
             <span class="tag">{{ c.year }}</span>
@@ -82,8 +86,7 @@ const campaigns = [
 
 <style scoped>
 .page-hero {
-  padding: 4rem 0 3rem;
-  border-bottom: 1px solid var(--color-border);
+  padding: 5rem 0 3.5rem;
 }
 
 .page-hero__lede {
@@ -92,58 +95,88 @@ const campaigns = [
   margin-bottom: 1.5rem;
 }
 
+.media-break {
+  position: relative;
+  height: 75vh;
+  min-height: 460px;
+  background: linear-gradient(200deg, var(--color-surface) 0%, var(--color-bg-alt) 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: 2rem 2.5rem;
+}
+
+.media-break span {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-text-dim);
+}
+
 .measurements {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 1.5rem;
-  margin-top: 1.5rem;
+  margin-top: 2rem;
   text-align: center;
+}
+
+.measurements__item {
+  padding: 0 1rem;
+  border-left: 1px solid var(--color-border);
+}
+
+.measurements__item:first-child {
+  border-left: none;
 }
 
 .measurements__value {
   font-family: var(--font-display);
-  font-size: 1.75rem;
-  color: var(--color-accent);
+  font-size: 1.9rem;
 }
 
 .measurements__label {
-  font-size: 0.8rem;
-  letter-spacing: 0.08em;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--color-text-dim);
-  margin-top: 0.25rem;
+  margin-top: 0.35rem;
 }
 
 .gallery {
-  margin-top: 1.5rem;
-  columns: 4;
-  column-gap: 1.25rem;
+  margin-top: 2rem;
+  columns: 3;
+  column-gap: 1.5rem;
 }
 
 .gallery__item {
   break-inside: avoid;
-  margin-bottom: 1.25rem;
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  margin-bottom: 1.5rem;
+  transition: opacity 0.25s ease;
 }
 
 .gallery__item:hover {
-  transform: translateY(-4px);
-  border-color: var(--color-accent);
+  opacity: 0.7;
 }
 
 .campaigns {
-  margin-top: 1.5rem;
+  margin-top: 2rem;
   display: grid;
-  gap: 1.25rem;
+  gap: 0;
 }
 
 .campaigns__item {
-  padding: 1.5rem;
+  padding: 1.75rem 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.campaigns__item:last-child {
+  border-bottom: 1px solid var(--color-border);
 }
 
 .campaigns__header {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
   gap: 1rem;
   margin-bottom: 0.5rem;
@@ -155,15 +188,21 @@ const campaigns = [
 
 .campaigns__item p {
   margin: 0;
+  max-width: 60ch;
 }
 
 @media (max-width: 960px) {
   .measurements {
     grid-template-columns: repeat(3, 1fr);
+    row-gap: 1.5rem;
+  }
+
+  .measurements__item:nth-child(4) {
+    border-left: none;
   }
 
   .gallery {
-    columns: 3;
+    columns: 2;
   }
 }
 
@@ -172,8 +211,8 @@ const campaigns = [
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .gallery {
-    columns: 2;
+  .measurements__item:nth-child(odd) {
+    border-left: none;
   }
 }
 </style>

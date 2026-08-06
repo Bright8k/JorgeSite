@@ -84,7 +84,11 @@ async function handleSubmit() {
     </div>
   </section>
 
-  <section class="section section-alt contact">
+  <section class="media-break bleed">
+    <span>Full-Bleed Portrait</span>
+  </section>
+
+  <section class="section section-invert contact">
     <div class="container contact__grid">
       <div>
         <p class="eyebrow">Get in Touch</p>
@@ -110,7 +114,7 @@ async function handleSubmit() {
       </div>
 
       <form
-        class="contact-form card"
+        class="contact-form"
         name="contact"
         data-netlify="true"
         netlify-honeypot="bot-field"
@@ -135,7 +139,7 @@ async function handleSubmit() {
         </label>
         <label>
           Message
-          <textarea v-model="form.message" name="message" rows="5" required></textarea>
+          <textarea v-model="form.message" name="message" rows="4"></textarea>
         </label>
         <button type="submit" class="btn btn-solid" :disabled="isSubmitting">
           {{ isSubmitting ? 'Sending…' : 'Send Message' }}
@@ -148,8 +152,7 @@ async function handleSubmit() {
 
 <style scoped>
 .page-hero {
-  padding: 4rem 0 3rem;
-  border-bottom: 1px solid var(--color-border);
+  padding: 5rem 0 3.5rem;
 }
 
 .page-hero__lede {
@@ -160,56 +163,82 @@ async function handleSubmit() {
 .bio__grid {
   display: grid;
   grid-template-columns: 0.8fr 1.2fr;
-  gap: 3rem;
+  gap: 4rem;
   align-items: start;
 }
 
 .achievements {
   margin: 0.75rem 0 0;
-  padding-left: 1.2rem;
-  color: var(--color-text-dim);
+  padding: 0;
+  list-style: none;
 }
 
 .achievements li {
-  margin-bottom: 0.5rem;
+  padding: 0.9rem 0;
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-dim);
+}
+
+.achievements li:last-child {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.media-break {
+  position: relative;
+  height: 65vh;
+  min-height: 400px;
+  background: linear-gradient(200deg, var(--color-surface) 0%, var(--color-bg-alt) 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: 2rem 2.5rem;
+}
+
+.media-break span {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-text-dim);
 }
 
 .contact__grid {
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;
-  gap: 3rem;
+  gap: 4rem;
 }
 
 .contact-info {
-  margin: 1.5rem 0 0;
-  display: grid;
-  gap: 1rem;
-}
-
-.contact-info dt {
-  font-family: var(--font-display);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  font-size: 0.85rem;
-  color: var(--color-text-dim);
-}
-
-.contact-info dd {
-  margin: 0.15rem 0 0;
-  font-size: 1.05rem;
-}
-
-.contact-form {
-  padding: 2rem;
+  margin: 2rem 0 0;
   display: grid;
   gap: 1.25rem;
 }
 
+.contact-info dt {
+  font-family: var(--font-body);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: var(--color-text-dim);
+}
+
+.contact-info dd {
+  margin: 0.3rem 0 0;
+  font-size: 1.1rem;
+  font-family: var(--font-display);
+}
+
+.contact-form {
+  display: grid;
+  gap: 1.75rem;
+}
+
 .contact-form label {
   display: grid;
-  gap: 0.4rem;
-  font-size: 0.9rem;
-  letter-spacing: 0.03em;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--color-text-dim);
 }
@@ -217,29 +246,32 @@ async function handleSubmit() {
 .contact-form input,
 .contact-form textarea {
   font-family: var(--font-body);
+  font-weight: 300;
   font-size: 1rem;
   color: var(--color-text);
-  background: var(--color-bg);
-  border: 1px solid var(--color-border);
-  border-radius: 3px;
-  padding: 0.7em 0.9em;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  border-radius: 0;
+  padding: 0.6em 0;
   resize: vertical;
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
   outline: none;
-  border-color: var(--color-accent);
+  border-color: var(--color-text);
 }
 
 .contact-form button {
   justify-self: start;
+  margin-top: 0.5rem;
 }
 
 .contact-form__status {
   margin: 0;
   font-size: 0.9rem;
-  color: var(--color-accent);
+  color: var(--color-text-dim);
 }
 
 @media (max-width: 860px) {

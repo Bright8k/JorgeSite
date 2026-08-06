@@ -19,7 +19,7 @@ function closeMenu() {
   <header class="navbar">
     <div class="container navbar__inner">
       <RouterLink to="/" class="navbar__brand" @click="closeMenu">
-        Jorge <span>De La Nuez</span>
+        Jorge De La Nuez
       </RouterLink>
 
       <button
@@ -28,7 +28,6 @@ function closeMenu() {
         aria-label="Toggle navigation menu"
         @click="isOpen = !isOpen"
       >
-        <span />
         <span />
         <span />
       </button>
@@ -43,7 +42,7 @@ function closeMenu() {
         >
           {{ link.label }}
         </RouterLink>
-        <RouterLink to="/about" class="btn btn-solid navbar__cta" @click="closeMenu">
+        <RouterLink to="/about" class="navbar__cta" @click="closeMenu">
           Book Jorge
         </RouterLink>
       </nav>
@@ -56,8 +55,8 @@ function closeMenu() {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(11, 11, 13, 0.85);
-  backdrop-filter: blur(8px);
+  background: rgba(10, 10, 10, 0.88);
+  backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -65,50 +64,59 @@ function closeMenu() {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 4.5rem;
+  height: 5rem;
 }
 
 .navbar__brand {
   font-family: var(--font-display);
-  font-size: 1.5rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  font-style: italic;
+  font-size: 1.35rem;
+  letter-spacing: 0.01em;
   color: var(--color-text);
-}
-
-.navbar__brand span {
-  color: var(--color-accent);
 }
 
 .navbar__links {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 2.5rem;
 }
 
 .navbar__link {
-  font-family: var(--font-display);
-  font-size: 1rem;
-  letter-spacing: 0.08em;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--color-text-dim);
   transition: color 0.2s ease;
 }
 
 .navbar__link:hover,
-.navbar__link.router-link-active {
+.navbar__link.router-link-exact-active {
   color: var(--color-text);
 }
 
 .navbar__cta {
-  padding: 0.6em 1.4em;
-  font-size: 0.9rem;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.7em 1.5em;
+  border: 1px solid var(--color-text);
+  color: var(--color-text);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.navbar__cta:hover {
+  background: var(--color-text);
+  color: var(--color-bg);
 }
 
 .navbar__toggle {
   display: none;
   flex-direction: column;
-  gap: 5px;
+  gap: 6px;
   background: none;
   border: none;
   cursor: pointer;
@@ -116,8 +124,8 @@ function closeMenu() {
 }
 
 .navbar__toggle span {
-  width: 24px;
-  height: 2px;
+  width: 22px;
+  height: 1px;
   background: var(--color-text);
 }
 
@@ -128,13 +136,13 @@ function closeMenu() {
 
   .navbar__links {
     position: absolute;
-    top: 4.5rem;
+    top: 5rem;
     left: 0;
     right: 0;
     flex-direction: column;
     align-items: flex-start;
     gap: 0;
-    background: var(--color-bg-alt);
+    background: var(--color-bg);
     border-bottom: 1px solid var(--color-border);
     max-height: 0;
     overflow: hidden;
@@ -148,13 +156,14 @@ function closeMenu() {
   .navbar__link,
   .navbar__cta {
     width: 100%;
-    padding: 1rem 1.5rem;
+    padding: 1.1rem 1.75rem;
+    border: none;
+    border-top: 1px solid var(--color-border);
   }
 
-  .navbar__cta {
-    margin: 0.5rem 1.5rem 1rem;
-    width: auto;
-    justify-content: center;
+  .navbar__cta:hover {
+    background: transparent;
+    color: var(--color-text);
   }
 }
 </style>

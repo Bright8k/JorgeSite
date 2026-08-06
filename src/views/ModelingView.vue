@@ -8,10 +8,10 @@ const measurements = [
   { label: 'Eyes', value: 'Brown' },
 ]
 
-const gallery = Array.from({ length: 9 }, (_, i) => ({
-  id: i + 1,
-  ratio: i % 3 === 0 ? '3 / 4' : i % 3 === 1 ? '1 / 1' : '4 / 5',
-}))
+const gallery = Array.from({ length: 25 }, (_, i) => {
+  const n = String(i + 1).padStart(2, '0')
+  return { id: n, src: `/images/modeling/jorge-modeling-${n}.jpg` }
+})
 
 const campaigns = [
   { name: 'Brand / Campaign', year: '2025', text: 'Placeholder description of the shoot or campaign.' },
@@ -34,7 +34,7 @@ const campaigns = [
   </section>
 
   <section class="media-break bleed">
-    <span>Full-Bleed Editorial Shot</span>
+    <img src="/images/modeling/jorge-modeling-25.jpg" alt="Jorge De La Nuez portrait" />
   </section>
 
   <section class="section section-invert">
@@ -55,13 +55,8 @@ const campaigns = [
       <p class="eyebrow">Portfolio</p>
       <h2>Gallery</h2>
       <div class="gallery">
-        <div
-          v-for="photo in gallery"
-          :key="photo.id"
-          class="placeholder-img gallery__item"
-          :style="{ '--ratio': photo.ratio }"
-        >
-          <span>Photo {{ photo.id }}</span>
+        <div v-for="photo in gallery" :key="photo.id" class="gallery__item">
+          <img :src="photo.src" :alt="`Jorge De La Nuez — modeling photo ${photo.id}`" loading="lazy" />
         </div>
       </div>
     </div>
@@ -99,18 +94,14 @@ const campaigns = [
   position: relative;
   height: 75vh;
   min-height: 460px;
-  background: linear-gradient(200deg, var(--color-surface) 0%, var(--color-bg-alt) 100%);
-  display: flex;
-  align-items: flex-end;
-  padding: 2rem 2.5rem;
+  overflow: hidden;
 }
 
-.media-break span {
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--color-text-dim);
+.media-break img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 20%;
 }
 
 .measurements {
@@ -152,11 +143,19 @@ const campaigns = [
 .gallery__item {
   break-inside: avoid;
   margin-bottom: 1.5rem;
+  border: 1px solid var(--color-border);
+  overflow: hidden;
   transition: opacity 0.25s ease;
 }
 
 .gallery__item:hover {
   opacity: 0.7;
+}
+
+.gallery__item img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 .campaigns {

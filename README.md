@@ -27,12 +27,12 @@ npm run preview   # preview the production build
 
 ## Content still needed
 
-All copy, stats, and photos are placeholders. Swap in real content in:
+Most copy and photos are still placeholders. Swap in real content in:
 
-- `HomeView.vue` — hero tagline, quick stats
-- `FootballView.vue` — position, measurables, season stats table, team history
-- `ModelingView.vue` — measurements, gallery photos, campaign list
-- `AboutView.vue` — bio copy, achievements, contact details
+- `HomeView.vue` — hero tagline, quick stats, hero/break photos
+- `FootballView.vue` — position, measurables, season stats table, team history, photos
+- `ModelingView.vue` — measurements, campaign list. **Gallery photos are real** (`public/images/modeling/`, 25 shots from the August shoot) — add/remove by editing the `gallery` array at the top of the file
+- `AboutView.vue` — bio copy, achievements, contact details, portrait photo
 
 The contact form in `AboutView.vue` submits to **Netlify Forms** (see below) — no backend code required.
 

@@ -1,5 +1,11 @@
 <script setup>
 const year = new Date().getFullYear()
+
+const socials = [
+  { label: 'Instagram', href: 'https://www.instagram.com/the_j.d23' },
+  { label: 'TikTok', href: '#' },
+  { label: 'X', href: '#' },
+]
 </script>
 
 <template>
@@ -18,9 +24,16 @@ const year = new Date().getFullYear()
       </nav>
 
       <div class="footer__social">
-        <a href="#" aria-label="Instagram">Instagram</a>
-        <a href="#" aria-label="TikTok">TikTok</a>
-        <a href="#" aria-label="X / Twitter">X</a>
+        <a
+          v-for="social in socials"
+          :key="social.label"
+          :href="social.href"
+          :target="social.href !== '#' ? '_blank' : undefined"
+          :rel="social.href !== '#' ? 'noopener' : undefined"
+          :aria-label="social.label"
+        >
+          {{ social.label }}
+        </a>
       </div>
     </div>
 

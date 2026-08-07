@@ -7,7 +7,7 @@ function easeOutBack(t) {
   return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2)
 }
 
-export function smoothScrollTo(targetY, { duration = 850 } = {}) {
+export function smoothScrollTo(targetY, { duration = 1600 } = {}) {
   return new Promise((resolve) => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const startY = window.scrollY

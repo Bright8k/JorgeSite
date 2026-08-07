@@ -99,7 +99,7 @@ onUnmounted(() => {
   border-bottom: 1px solid var(--color-border);
   opacity: 0;
   transform: translateY(-100%);
-  transition: opacity 0.6s ease, transform 0.4s ease;
+  transition: opacity 2s ease, transform 0.4s ease;
 }
 
 .navbar--visible {

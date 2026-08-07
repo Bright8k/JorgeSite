@@ -1,10 +1,16 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, START_LOCATION } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import { smoothScrollTo } from '../utils/smoothScroll'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   scrollBehavior(to, from, savedPosition) {
+    // Skip on the initial page load — only animate scroll for actual in-app
+    // navigations, otherwise the page visibly scrolls right after it loads.
+    if (from === START_LOCATION) {
+      return savedPosition || undefined
+    }
+
     return new Promise((resolve) => {
       // Let the new route's DOM settle before measuring hash targets / animating.
       setTimeout(() => {

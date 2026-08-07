@@ -1,4 +1,11 @@
 <script setup>
+const profileStats = [
+  { label: 'Position', value: 'RB' },
+  { label: 'Seasons', value: '02' },
+  { label: 'Height', value: "5'8\"" },
+  { label: 'Agency', value: 'TBD' },
+]
+
 const keyStats = [
   { label: 'Position', value: 'RB' },
   { label: 'Height', value: "5'8\"" },
@@ -34,6 +41,15 @@ const gallery = [
         Explosive, reliable, and built for the big moments. Position,
         measurables, and season-by-season production.
       </p>
+    </div>
+  </section>
+
+  <section class="section section-invert stat-strip">
+    <div class="container stat-strip__grid">
+      <div v-for="stat in profileStats" :key="stat.label" class="stat-strip__item">
+        <div class="stat-strip__value">{{ stat.value }}</div>
+        <div class="stat-strip__label">{{ stat.label }}</div>
+      </div>
     </div>
   </section>
 

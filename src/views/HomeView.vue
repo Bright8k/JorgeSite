@@ -1,37 +1,21 @@
-<script setup>
-const stats = [
-  { label: 'Position', value: 'RB' },
-  { label: 'Seasons', value: '02' },
-  { label: 'Height', value: "5'8\"" },
-  { label: 'Agency', value: 'TBD' },
-]
-</script>
-
 <template>
   <section class="hero">
     <div class="hero__media">
       <span>Hero Photo — Full Bleed Action Shot</span>
     </div>
-    <div class="hero__overlay" />
-    <div class="container hero__copy">
+  </section>
+
+  <section class="section section-invert intro">
+    <div class="container intro__copy">
       <p class="eyebrow">Athlete &amp; Model</p>
-      <h1>Jorge<br />De La Nuez</h1>
-      <p class="hero__lede">
+      <h1>Jorge De La Nuez</h1>
+      <p class="intro__lede">
         Competing on the field, commanding the frame. Discipline, presence,
         and versatility — across football and fashion.
       </p>
-      <div class="hero__actions">
+      <div class="intro__actions">
         <RouterLink to="/football" class="btn btn-solid">Football Profile</RouterLink>
         <RouterLink to="/modeling" class="btn">Modeling Portfolio</RouterLink>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-invert stats">
-    <div class="container stats__grid">
-      <div v-for="stat in stats" :key="stat.label" class="stats__item">
-        <div class="stats__value">{{ stat.value }}</div>
-        <div class="stats__label">{{ stat.label }}</div>
       </div>
     </div>
   </section>
@@ -76,8 +60,6 @@ const stats = [
   position: relative;
   height: 100vh;
   min-height: 640px;
-  display: flex;
-  align-items: flex-end;
   overflow: hidden;
 }
 
@@ -99,56 +81,20 @@ const stats = [
   color: var(--color-text-dim);
 }
 
-.hero__overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(0deg, rgba(10, 10, 10, 0.85) 0%, rgba(10, 10, 10, 0.1) 55%);
+.intro__copy h1 {
+  font-size: clamp(2.4rem, 4.5vw, 3.6rem);
 }
 
-.hero__copy {
-  position: relative;
-  padding-bottom: 5rem;
-}
-
-.hero__lede {
-  max-width: 40ch;
+.intro__lede {
+  max-width: 48ch;
   font-size: 1.1rem;
 }
 
-.hero__actions {
+.intro__actions {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
   margin-top: 1.5rem;
-}
-
-.stats__grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-}
-
-.stats__item {
-  text-align: center;
-  padding: 0 1.5rem;
-  border-left: 1px solid var(--color-border);
-}
-
-.stats__item:first-child {
-  border-left: none;
-}
-
-.stats__value {
-  font-family: var(--font-display);
-  font-size: 2.75rem;
-}
-
-.stats__label {
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--color-text-dim);
-  margin-top: 0.4rem;
 }
 
 .media-break {
@@ -225,15 +171,6 @@ const stats = [
 }
 
 @media (max-width: 860px) {
-  .stats__grid {
-    grid-template-columns: repeat(2, 1fr);
-    row-gap: 2rem;
-  }
-
-  .stats__item:nth-child(3) {
-    border-left: none;
-  }
-
   .teaser__grid {
     grid-template-columns: 1fr;
     gap: 3rem;

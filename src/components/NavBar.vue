@@ -1,7 +1,9 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 
 const isOpen = ref(false)
+const hasEntered = ref(false)
+const isScrollHidden = ref(false)
 
 const links = [
   { to: '/', label: 'Home' },
@@ -13,10 +15,47 @@ const links = [
 function closeMenu() {
   isOpen.value = false
 }
+
+let lastScrollY = 0
+let ticking = false
+let entryTimer = null
+
+function updateScrollState() {
+  const currentY = window.scrollY
+  isScrollHidden.value = hasEntered.value && currentY > lastScrollY && currentY > 120
+  if (isScrollHidden.value) {
+    isOpen.value = false
+  }
+  lastScrollY = currentY
+  ticking = false
+}
+
+function onScroll() {
+  if (!ticking) {
+    window.requestAnimationFrame(updateScrollState)
+    ticking = true
+  }
+}
+
+onMounted(() => {
+  lastScrollY = window.scrollY
+  window.addEventListener('scroll', onScroll, { passive: true })
+  entryTimer = setTimeout(() => {
+    hasEntered.value = true
+  }, 400)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', onScroll)
+  clearTimeout(entryTimer)
+})
 </script>
 
 <template>
-  <header class="navbar">
+  <header
+    class="navbar"
+    :class="{ 'navbar--visible': hasEntered, 'navbar--scroll-hidden': isScrollHidden }"
+  >
     <div class="container navbar__inner">
       <RouterLink to="/" class="navbar__brand" @click="closeMenu">
         Jorge De La Nuez
@@ -58,6 +97,18 @@ function closeMenu() {
   background: rgba(10, 10, 10, 0.88);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--color-border);
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: opacity 0.6s ease, transform 0.4s ease;
+}
+
+.navbar--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.navbar--scroll-hidden {
+  transform: translateY(-100%);
 }
 
 .navbar__inner {
